@@ -4,6 +4,11 @@
           <mat-toolbar-row>
             <h3>Shopify</h3>
             <div class="spacer"></div>
+           <!--  <label>{{currentPosition}}</label> -->
+           <button mat-icon-button [disabled]="subscription"  class="subscribe-btn" (click)="subscribeToPushNotification()" >
+            <mat-icon>subscriptions</mat-icon>
+            </button>
+           
             <mat-icon>shopping_cart</mat-icon>
           </mat-toolbar-row>
       </mat-toolbar>

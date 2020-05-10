@@ -11,7 +11,9 @@ import { UpdateService } from './update.service';
 export class AppComponent implements OnInit {
 
   readonly VAPID_PUBLIC_KEY = "BLR_XfEzmClxn0NhAiE_2ZoRAvyG-wbxG_i9kXJryf__RqGaHuchbbZ31RIf-tTzAJ4oHZ_4W9i9uYVP-DilNYw";
-
+  subscription:PushSubscription;
+  currentPosition:any;
+  
   constructor( private swUpdate:SwUpdate, private _snackBar:MatSnackBar, private swPush:SwPush, private updateService:UpdateService){
 
   }
@@ -32,7 +34,25 @@ export class AppComponent implements OnInit {
       });
     }
 
-    //Push Notification subscription
+    //finding user's current location
+    if(!navigator.geolocation) {
+      console.log('Geolocation is not supported by your browser');
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        position =>{
+          console.log("current position",position);
+          this.currentPosition = position;
+        },
+        err =>{
+          console.log(err);
+        }
+      );
+    }
+
+  }
+ //Push Notification subscription
+  subscribeToPushNotification(){
+   
     if(this.swPush.isEnabled){
       console.log("swPush is enabled");
 
@@ -55,6 +75,5 @@ export class AppComponent implements OnInit {
         })
   
     }
-  
   }
 }

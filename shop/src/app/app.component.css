@@ -10,3 +10,7 @@
     font: 500 0.8em Roboto,Helvetica Neue,sans-serif;
     margin-bottom: 0px;
 }
+.subscribe-btn{
+    margin-right: 20px;
+    cursor: pointer;
+}
